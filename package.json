@@ -1,0 +1,17 @@
+{
+  "name": "node-color-gradient",
+  "version": "0.1.0",
+  "description": "Node module for working with colour gradients",
+  "main": "./dist/index.js",
+  "author": "Patt-tom McDonnell <contact@mcdonnell.pt>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/color": "^2.0.0",
+    "@types/mathjs": "^0.0.35",
+    "typescript": "^2.5.2"
+  },
+  "dependencies": {
+    "color": "^2.0.0",
+    "mathjs": "^3.16.3"
+  }
+}

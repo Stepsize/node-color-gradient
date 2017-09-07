@@ -1,6 +1,6 @@
 {
   "name": "node-color-gradient",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Node module for working with colour gradients",
   "main": "./dist/index.js",
   "author": "Patt-tom McDonnell <contact@mcdonnell.pt>",

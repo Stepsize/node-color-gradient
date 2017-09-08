@@ -1,7 +1,8 @@
 import * as Color from 'color';
-import * as math from 'mathjs';
 
-export default class NodeColorGradient {
+import MathArray from './MathArray';
+
+class NodeColorGradient {
 
   colors: Color[];
   differences: number[];
@@ -32,16 +33,16 @@ export default class NodeColorGradient {
     if(!totalSteps){
       totalSteps = steps;
     }
-    const baseMatrix = math.matrix(this.colors[baseIndex].color);
+    const baseMatrix = new MathArray(...this.colors[baseIndex].color);
     let stops : Array<number[]> = [];
     const increments = this.calculateIncrements(totalSteps);
     for (let i = 0; i < steps; i++) {
-      const multiplier = math.matrix([i+1,i+1,i+1]);
-      const increment = math.matrix(increments[baseIndex]);
+      const multiplier = new MathArray(...[i+1,i+1,i+1]);
+      const increment = new MathArray(...increments[baseIndex]);
       const a = baseMatrix;
-      const b = math.dotMultiply(multiplier, increment);
-      const stop = math.add(a,b);
-      stops.push(stop.toArray());
+      const b = multiplier.multiply(increment);
+      const stop = a.add(b);
+      stops.push(stop);
     }
     return stops;
   }
@@ -70,6 +71,6 @@ export default class NodeColorGradient {
   }
 
 }
+export default NodeColorGradient
 
-// Support require();
 module.exports = NodeColorGradient;

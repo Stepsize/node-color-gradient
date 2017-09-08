@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Color = require("color");
 const math = require("mathjs");
+const MathArray_1 = require("./MathArray");
 class NodeColorGradient {
     constructor(colors) {
         this.colors = colors.map((step) => {
@@ -25,16 +26,17 @@ class NodeColorGradient {
         if (!totalSteps) {
             totalSteps = steps;
         }
-        const baseMatrix = math.matrix(this.colors[baseIndex].color);
+        const baseMatrix = new MathArray_1.default(...this.colors[baseIndex].color);
         let stops = [];
         const increments = this.calculateIncrements(totalSteps);
         for (let i = 0; i < steps; i++) {
-            const multiplier = math.matrix([i + 1, i + 1, i + 1]);
-            const increment = math.matrix(increments[baseIndex]);
+            const multiplier = new MathArray_1.default(...[i + 1, i + 1, i + 1]);
+            console.log(multiplier);
+            const increment = new MathArray_1.default(...increments[baseIndex]);
             const a = baseMatrix;
-            const b = math.dotMultiply(multiplier, increment);
-            const stop = math.add(a, b);
-            stops.push(stop.toArray());
+            const b = multiplier.multiply(increment);
+            const stop = a.add(b);
+            stops.push(stop);
         }
         return stops;
     }

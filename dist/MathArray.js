@@ -4,39 +4,60 @@ class MathArray extends Array {
     constructor(...args) {
         super(...args);
     }
-    fromArray(a) {
-        return new MathArray(...a);
-    }
     add(a) {
-        if (this.length !== a.length) {
-            throw new Error('Arrays must be of same length');
+        let isArray = Array.isArray(a);
+        if (isArray && this.length !== a.length) {
+            throw new Error(`Arrays must be of same length (${this.length}, ${a.length})`);
         }
         return this.map((number, index) => {
-            return number + a[index];
+            if (isArray) {
+                return number + a[index];
+            }
+            else {
+                return number + a;
+            }
         });
     }
     subtract(a) {
-        if (this.length !== a.length) {
-            throw new Error('Arrays must be of same length');
+        let isArray = Array.isArray(a);
+        if (isArray && this.length !== a.length) {
+            throw new Error(`Arrays must be of same length (${this.length}, ${a.length})`);
         }
         return this.map((number, index) => {
-            return number - a[index];
+            if (isArray) {
+                return number - a[index];
+            }
+            else {
+                return number - a;
+            }
         });
     }
     divide(a) {
-        if (this.length !== a.length) {
-            throw new Error('Arrays must be of same length');
+        let isArray = Array.isArray(a);
+        if (isArray && this.length !== a.length) {
+            throw new Error(`Arrays must be of same length (${this.length}, ${a.length})`);
         }
         return this.map((number, index) => {
-            return number / a[index];
+            if (isArray) {
+                return number / a[index];
+            }
+            else {
+                return number / a;
+            }
         });
     }
     multiply(a) {
-        if (this.length !== a.length) {
-            throw new Error('Arrays must be of same length');
+        let isArray = Array.isArray(a);
+        if (isArray && this.length !== a.length) {
+            throw new Error(`Arrays must be of same length (${this.length}, ${a.length})`);
         }
         return this.map((number, index) => {
-            return number * a[index];
+            if (isArray) {
+                return number * a[index];
+            }
+            else {
+                return number * a;
+            }
         });
     }
 }

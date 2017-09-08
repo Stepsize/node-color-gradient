@@ -25,8 +25,9 @@ class NodeColorGradient {
 
   private calculateIncrements(steps: number){
     const stopsPerColor = steps / (this.colors.length - 1);
-    const differenceMatrix = math.matrix(this.differences);
-    return math.divide(differenceMatrix, stopsPerColor).toArray();
+    return this.differences.map((difference) => {
+      return new MathArray(...difference).divide(stopsPerColor);
+    });
   }
 
   private calculateStopsForIndex(baseIndex: number, steps: number, totalSteps?: number){
